@@ -11,17 +11,37 @@ dukaan-store/
 ├── src/
 │   ├── main/
 │   │   ├── java/com/Dukaan/store/
+│   │   │   ├── controller/
+│   │   │   │   ├── OrderController.java
+│   │   │   │   ├── OrderItemController.java
+│   │   │   │   ├── ProductController.java
+│   │   │   │   └── UserController.java
+│   │   │   ├── model/
+│   │   │   │   ├── Order.java
+│   │   │   │   ├── OrderItem.java
+│   │   │   │   ├── Product.java
+│   │   │   │   └── User.java
+│   │   │   ├── repository/
+│   │   │   │   ├── OrderItemRepository.java
+│   │   │   │   ├── OrderRepository.java
+│   │   │   │   ├── ProductRepository.java
+│   │   │   │   └── UserRepository.java
+│   │   │   ├── service/
+│   │   │   │   ├── OrderItemService.java
+│   │   │   │   ├── OrderService.java
+│   │   │   │   ├── ProductService.java
+│   │   │   │   ├── UserService.java
+│   │   │   │   ├── PaymentService.java
+│   │   │   │   ├── PaypalPaymentService.java
+│   │   │   │   ├── StripePaymentService.java
 │   │   │   ├── HomeController.java
-│   │   │   ├── OrderService.java
-│   │   │   ├── PaymentService.java
-│   │   │   ├── PaypalPaymentService.java
-│   │   │   ├── StripePaymentService.java
 │   │   │   └── StoreApplication.java
 │   │   └── resources/
 │   │       ├── static/
 │   │       │   └── index.html
 │   │       └── application.properties
 ├── pom.xml
+
 
 ````
 
