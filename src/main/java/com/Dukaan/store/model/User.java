@@ -1,6 +1,7 @@
 package com.Dukaan.store.model;
 
 import jakarta.persistence.*;
+import java.util.*;
 
 @Entity
 public class User {
@@ -11,9 +12,11 @@ public class User {
     private String name;
     private String email;
     private String password;
-    private String role; // "USER" or "ADMIN"
+    private String role;
 
-    // Constructors
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<Order> orders = new ArrayList<>();
+
     public User() {}
 
     public User(String name, String email, String password, String role) {
@@ -25,7 +28,6 @@ public class User {
 
     // Getters and Setters
     public Long getId() { return id; }
-
     public String getName() { return name; }
     public void setName(String name) { this.name = name; }
 
@@ -37,4 +39,7 @@ public class User {
 
     public String getRole() { return role; }
     public void setRole(String role) { this.role = role; }
+
+    public List<Order> getOrders() { return orders; }
+    public void setOrders(List<Order> orders) { this.orders = orders; }
 }
