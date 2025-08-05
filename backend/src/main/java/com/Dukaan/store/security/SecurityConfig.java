@@ -1,6 +1,5 @@
-package com.Dukaan.store.config;
+package com.Dukaan.store.security;
 
-import com.Dukaan.store.security.JwtAuthenticationFilter;
 import com.Dukaan.store.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
