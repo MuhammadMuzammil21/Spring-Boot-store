@@ -1,5 +1,6 @@
-package com.Dukaan.store.security;
+package com.Dukaan.store.config;
 
+import com.Dukaan.store.security.JwtAuthenticationFilter;
 import com.Dukaan.store.service.CustomUserDetailsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
@@ -29,6 +30,7 @@ public class SecurityConfig {
 
     @Autowired
     private CustomUserDetailsService userDetailsService;
+    
     @Autowired
     private JwtAuthenticationFilter jwtAuthenticationFilter;
 
