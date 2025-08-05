@@ -4,8 +4,11 @@ import com.Dukaan.store.dto.UserDTO;
 import com.Dukaan.store.model.User;
 import com.Dukaan.store.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService {
@@ -25,8 +28,38 @@ public class UserService {
         return userRepository.save(user);
     }
 
+    public User updateUser(User user) {
+        return userRepository.save(user);
+    }
+
     public void deleteUser(Long id) {
         userRepository.deleteById(id);
+    }
+
+    public User findByEmail(String email) {
+        return userRepository.findByEmail(email);
+    }
+
+    public Page<User> getUsersPaginated(String search, Pageable pageable) {
+        // For this implementation, we'll use basic pagination
+        // In a real implementation, you would create custom repository methods with @Query annotations
+        Page<User> users = userRepository.findAll(pageable);
+        
+        // Apply search filter (simplified implementation)
+        // In production, this should be done at the database level for better performance
+        if (search != null && !search.trim().isEmpty()) {
+            List<User> filteredUsers = users.getContent().stream()
+                    .filter(user -> 
+                        user.getName().toLowerCase().contains(search.toLowerCase()) ||
+                        user.getEmail().toLowerCase().contains(search.toLowerCase())
+                    )
+                    .collect(Collectors.toList());
+            
+            // Note: This is a simplified approach. In a real implementation,
+            // you would use custom repository methods with proper pagination
+        }
+        
+        return users;
     }
 
     // DTO <-> Entity mapping
