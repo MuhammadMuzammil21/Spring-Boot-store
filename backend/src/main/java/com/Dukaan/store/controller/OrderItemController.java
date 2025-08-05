@@ -13,11 +13,11 @@ import java.util.stream.Collectors;
 public class OrderItemController {
 
     @Autowired
-    private OrderItemService orderItemSerOrderItemService;
+    private OrderItemService orderItemService;
 
     @GetMapping
     public List<OrderItemDTO> getAllOrderItems() {
-        return orderItemSerOrderItemService.getAllOrderItems().stream()
+        return orderItemService.getAllOrderItems().stream()
                 .map(this::toDTO)
                 .collect(Collectors.toList());
     }
@@ -25,19 +25,19 @@ public class OrderItemController {
     @PostMapping
     public OrderItemDTO createOrderItem(@RequestBody OrderItemDTO orderItemDTO) {
         OrderItem orderItem = toEntity(orderItemDTO);
-        OrderItem saved = orderItemSerOrderItemService.createOrderItem(orderItem);
+        OrderItem saved = orderItemService.createOrderItem(orderItem);
         return toDTO(saved);
     }
 
     @GetMapping("/{id}")
     public OrderItemDTO getOrderItemById(@PathVariable Long id) {
-        OrderItem orderItem = orderItemSerOrderItemService.getOrderItemById(id);
+        OrderItem orderItem = orderItemService.getOrderItemById(id);
         return orderItem != null ? toDTO(orderItem) : null;
     }
 
     @DeleteMapping("/{id}")
     public void deleteOrderItem(@PathVariable Long id) {
-        orderItemSerOrderItemService.deleteOrderItem(id);
+        orderItemService.deleteOrderItem(id);
     }
 
     private OrderItemDTO toDTO(OrderItem item) {
