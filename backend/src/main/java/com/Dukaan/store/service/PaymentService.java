@@ -1,4 +1,4 @@
-package com.Dukaan.store;
+package com.Dukaan.store.service;
 
 public interface PaymentService {
     void processPayment(double amount);

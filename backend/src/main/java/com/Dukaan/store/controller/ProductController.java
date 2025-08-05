@@ -6,7 +6,6 @@ import com.Dukaan.store.service.ProductService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -67,16 +66,7 @@ public class ProductController {
     })
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(
-            @Valid @RequestBody 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                description = "Product details to create",
-                content = @Content(
-                    mediaType = "application/json",
-                    examples = @ExampleObject(
-                        value = "{\"name\": \"Smartphone\", \"description\": \"Latest Android smartphone with 128GB storage\", \"price\": 299.99, \"stock\": 50}"
-                    )
-                )
-            ) ProductDTO productDTO) {
+            @Valid @RequestBody ProductDTO productDTO) {
         Product product = toEntity(productDTO);
         Product saved = productService.createProduct(product);
         return ResponseEntity.status(HttpStatus.CREATED).body(toDTO(saved));

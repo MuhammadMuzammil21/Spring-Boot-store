@@ -200,16 +200,7 @@ public class AuthController {
     })
     @PostMapping("/forgot-password")
     public ResponseEntity<Map<String, String>> forgotPassword(
-            @Valid @RequestBody 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                description = "Email address for password reset",
-                content = @Content(
-                    mediaType = "application/json",
-                    examples = @ExampleObject(
-                        value = "{\"email\": \"john@example.com\"}"
-                    )
-                )
-            ) Map<String, String> body) {
+            @Valid @RequestBody Map<String, String> body) {
         
         String email = body.get("email");
         Map<String, String> response = new HashMap<>();
@@ -259,16 +250,7 @@ public class AuthController {
     })
     @PostMapping("/reset-password")
     public ResponseEntity<Map<String, String>> resetPassword(
-            @Valid @RequestBody 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                description = "Password reset details",
-                content = @Content(
-                    mediaType = "application/json",
-                    examples = @ExampleObject(
-                        value = "{\"email\": \"john@example.com\", \"token\": \"uuid-token-here\", \"newPassword\": \"newSecurePassword123\"}"
-                    )
-                )
-            ) Map<String, String> body) {
+            @Valid @RequestBody Map<String, String> body) {
         
         String email = body.get("email");
         String token = body.get("token");

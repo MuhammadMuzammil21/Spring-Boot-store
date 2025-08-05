@@ -10,7 +10,6 @@ import com.Dukaan.store.service.OrderService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -71,16 +70,7 @@ public class OrderController {
     })
     @PostMapping
     public ResponseEntity<OrderDTO> createOrder(
-            @Valid @RequestBody 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                description = "Order details including user and items",
-                content = @Content(
-                    mediaType = "application/json",
-                    examples = @ExampleObject(
-                        value = "{\"user\":{\"email\":\"customer@example.com\"},\"items\":[{\"product\":{\"name\":\"Smartphone\"},\"quantity\":1}],\"total\":299.99}"
-                    )
-                )
-            ) OrderDTO orderDTO) {
+            @Valid @RequestBody OrderDTO orderDTO) {
         Order order = toEntity(orderDTO);
         Order saved = orderService.createOrder(order);
         return ResponseEntity.status(HttpStatus.CREATED).body(toDTO(saved));
@@ -144,7 +134,7 @@ public class OrderController {
             return ResponseEntity.badRequest().body(error);
         }
         
-        Order updatedOrder = orderService.updateOrderStatus(id, newStatus.toUpperCase());
+        orderService.updateOrderStatus(id, newStatus.toUpperCase());
         
         Map<String, Object> response = new HashMap<>();
         response.put("message", "Order status updated successfully");
@@ -261,7 +251,7 @@ public class OrderController {
         }
         
         try {
-            Order cancelledOrder = orderService.cancelOrder(id);
+            orderService.cancelOrder(id);
             
             Map<String, Object> response = new HashMap<>();
             response.put("message", "Order cancelled successfully");

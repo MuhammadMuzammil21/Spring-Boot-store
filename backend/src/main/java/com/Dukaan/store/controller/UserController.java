@@ -6,7 +6,6 @@ import com.Dukaan.store.service.UserService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.Parameter;
 import io.swagger.v3.oas.annotations.media.Content;
-import io.swagger.v3.oas.annotations.media.ExampleObject;
 import io.swagger.v3.oas.annotations.media.Schema;
 import io.swagger.v3.oas.annotations.parameters.RequestBody;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
@@ -71,16 +70,7 @@ public class UserController {
     })
     @PostMapping
     public ResponseEntity<UserDTO> createUser(
-            @Valid @RequestBody 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                description = "User details to create",
-                content = @Content(
-                    mediaType = "application/json",
-                    examples = @ExampleObject(
-                        value = "{\"username\": \"johndoe\", \"email\": \"john@example.com\", \"role\": \"USER\", \"password\": \"securePassword123\"}"
-                    )
-                )
-            ) Map<String, String> userData) {
+            @Valid @RequestBody Map<String, String> userData) {
         
         // Check if email already exists
         if (userService.findByEmail(userData.get("email")) != null) {
@@ -134,16 +124,7 @@ public class UserController {
     public ResponseEntity<UserDTO> updateUser(
             @Parameter(description = "User ID", required = true, example = "1")
             @PathVariable Long id,
-            @Valid @RequestBody 
-            @io.swagger.v3.oas.annotations.parameters.RequestBody(
-                description = "Updated user information",
-                content = @Content(
-                    mediaType = "application/json",
-                    examples = @ExampleObject(
-                        value = "{\"username\": \"johnsmith\", \"email\": \"johnsmith@example.com\"}"
-                    )
-                )
-            ) UserDTO userDTO) {
+            @Valid @RequestBody UserDTO userDTO) {
         
         User existingUser = userService.getUserById(id);
         if (existingUser == null) {

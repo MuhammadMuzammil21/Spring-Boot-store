@@ -1,4 +1,4 @@
-package com.Dukaan.store;
+package com.Dukaan.store.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
